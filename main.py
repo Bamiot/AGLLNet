@@ -90,11 +90,20 @@ def reresize(input_path, output_path, original_size):
         cv2.imwrite(filename + '.png', img_A)
 
 if __name__ == "__main__":
+    print("\n\nStart\n\n")
+
     # resize images
     original_size = resize(INPUT_PATH, WORK1_PATH, 480, 480)
 
+    print("\n\nOriginal size\n")
+    print(original_size)
+
+    print("\n\nRun\n\n")
+
     # compute results
     run(WORK1_PATH, WORK2_PATH)
+
+    print("\n\nRe-resize\n\n")
 
     # resize images
     reresize(WORK2_PATH, OUTPUT_PATH, original_size)
