@@ -21,7 +21,7 @@ def image_resize(image, width = None, height = None, inter = cv2.INTER_AREA):
     # if both the width and height are None, then return the
     # original image
     if width is None and height is None:
-        return image
+        return image, original_size
 
     # check to see if the width is None
     if width is None:
@@ -83,7 +83,7 @@ def reresize(input_path, output_path, original_size):
         img_A_path = path[i]
         img_A = cv2.imread(img_A_path)
 
-        img_B = image_resize(img_A, original_size[i][1], original_size[i][0])
+        img_B, _ = image_resize(img_A, original_size[i][1], original_size[i][0])
 
         filename = os.path.join(
             output_path,
@@ -97,16 +97,13 @@ if __name__ == "__main__":
 
     # resize images
     original_size = resize(INPUT_PATH, WORK1_PATH, 480, 480)
-
     print("\n\nOriginal size\n")
     print(original_size)
 
-    print("\n\nRun\n\n")
-
     # compute results
+    print("\n\nRun\n\n")
     run_agllnet(WORK1_PATH, WORK2_PATH)
 
-    print("\n\nRe-resize\n\n")
-
     # resize images
+    print("\n\nRe-resize\n\n")
     reresize(WORK2_PATH, OUTPUT_PATH, original_size)
