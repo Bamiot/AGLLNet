@@ -51,13 +51,13 @@ def resize(input_path, output_path, w, h):
 
     path = glob(os.path.join(input_path, '*.*'))
 
-    original_size = {}
+    original_size = []
 
     for i in tqdm(range(len(path))):
         img_A_path = path[i]
         img_A = cv2.imread(img_A_path)
 
-        img_A, original_size[img_A_path] = image_resize(img_A, w, h)
+        img_A, original_size[i] = image_resize(img_A, w, h)
 
         filename = os.path.join(
             output_path,
@@ -81,7 +81,7 @@ def reresize(input_path, output_path, original_size):
         img_A_path = path[i]
         img_A = cv2.imread(img_A_path)
 
-        img_B = image_resize(img_A, original_size[img_A_path][1], original_size[img_A_path][0])
+        img_B = image_resize(img_A, original_size[i][1], original_size[i][0])
 
         filename = os.path.join(
             output_path,
