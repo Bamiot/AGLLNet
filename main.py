@@ -63,7 +63,7 @@ def resize(input_path, output_path, w, h):
             output_path,
             os.path.splitext(os.path.basename(img_A_path))[0])
 
-        cv2.imwrite(filename + '.png', img_A)
+        cv2.imwrite(filename + '.jpg', img_A)
 
     return original_size
         
