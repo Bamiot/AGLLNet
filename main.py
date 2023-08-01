@@ -81,13 +81,14 @@ def reresize(input_path, output_path, original_size):
         img_A_path = path[i]
         img_A = cv2.imread(img_A_path)
 
-        img_A = cv2.resize(img_A, original_size[img_A_path], interpolation=cv2.INTER_LANCZOS4)
+        img_B = image_resize(img_A, original_size[img_A_path][1], original_size[img_A_path][0])
 
         filename = os.path.join(
             output_path,
             os.path.splitext(os.path.basename(img_A_path))[0])
+        
+        cv2.imwrite(filename + '.png', img_B)
 
-        cv2.imwrite(filename + '.png', img_A)
 
 if __name__ == "__main__":
     print("\n\nStart\n\n")
