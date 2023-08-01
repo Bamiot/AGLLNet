@@ -2,7 +2,7 @@ import os
 from tqdm import tqdm
 from glob import glob
 import cv2
-from run_agllnet import run
+from run_agllnet import run as run_agllnet
 
 # set paths
 INPUT_PATH = "input"
@@ -70,7 +70,7 @@ def resize(input_path, output_path, w, h):
 
 
 def reresize(input_path, output_path, original_size):
-    """Resize images to original size."""
+    """Resize images to original size. in jpg."""
 
     if not os.path.isdir(output_path):
         os.makedirs(output_path)
@@ -87,7 +87,7 @@ def reresize(input_path, output_path, original_size):
             output_path,
             os.path.splitext(os.path.basename(img_A_path))[0])
         
-        cv2.imwrite(filename + '.png', img_B)
+        cv2.imwrite(filename + '.jpg', img_B)
 
 
 if __name__ == "__main__":
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     print("\n\nRun\n\n")
 
     # compute results
-    run(WORK1_PATH, WORK2_PATH)
+    run_agllnet(WORK1_PATH, WORK2_PATH)
 
     print("\n\nRe-resize\n\n")
 
