@@ -57,7 +57,9 @@ def resize(input_path, output_path, w, h):
         img_A_path = path[i]
         img_A = cv2.imread(img_A_path)
 
-        img_A, original_size[i] = image_resize(img_A, w, h)
+        img_A, orig_size = image_resize(img_A, w, h)
+
+        original_size.append(orig_size)
 
         filename = os.path.join(
             output_path,
